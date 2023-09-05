@@ -29,7 +29,10 @@ public class BinarySearch {
         /*
         *   Todo: Call various array search implementations 
         */
-
+        
+        //index = linearSearch(sortedArray, searchKey);
+        //index = binarySearch(sortedArray, searchKey);
+        index = binarySearch(sortedArray, searchKey, 0, sortedArray.length - 1);
         
         if (index < 0) {
             System.out.println("Search key " + searchKey + " not found!");
@@ -40,18 +43,51 @@ public class BinarySearch {
 
     //  Todo: Implement linear search
     private int linearSearch(int[] sortedArray, int searchKey) {
-
+        for(int i=0; i< sortedArray.length; i++) {
+            if (searchKey == sortedArray[i]) {
+                return i;
+            }
+        }
+        
         return -1;
     }
 
     //  Todo: Implement binary search using iterative approach
     private int binarySearch(int[] sortedArray, int searchKey) {
-
+        int lowerBound = 0;
+        int upperBound = sortedArray.length - 1;
+        int midPoint;
+        
+        while (upperBound >= lowerBound) {
+            midPoint = (lowerBound + upperBound) / 2;
+            
+            if (searchKey == sortedArray[midPoint]) {   //Found it
+                return midPoint;
+            } else if (searchKey > sortedArray[midPoint]) { //searchKey is in upper half
+                lowerBound = midPoint + 1;
+            } else {    //searchKey is in lower half
+                upperBound = midPoint - 1;
+            }
+        }
+        
         return -1;
     }
 
     //  Todo: Implement binary search using recursion
     private int binarySearch(int[] sortedArray, int searchKey, int lowerBound, int upperBound) {
-        return -1;
+        if (lowerBound > upperBound) {  //Base Case
+            return -1;
+        }
+        
+        int midPoint = (lowerBound + upperBound) / 2;
+        
+        int midPointValue = sortedArray[midPoint];
+        if (searchKey == midPointValue) {
+            return midPoint;
+        } else if (searchKey > midPointValue) {
+            return binarySearch(sortedArray, searchKey, midPoint + 1, upperBound); //Recursive call for upper half
+        } else {
+            return binarySearch(sortedArray, searchKey, lowerBound, midPoint - 1); //Recursive call for lower half
+        }  
     }
 }
