@@ -14,6 +14,7 @@ public class TestDoublyLinkedListIterator {
             Link l = it.next();
             l.displayLink();
         }
+        System.out.println();
         
         it.previous();
         it.remove();

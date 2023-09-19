@@ -14,9 +14,10 @@ public class TestDoublyLinkedList {
         
         System.out.println("Display Forward:");
         dll.displayForward();
+        
         System.out.println("Display Backward:");
         dll.displayBackward();
-        
+       
         dll.deleteFirst();
         dll.deleteLast();
         dll.delete(1);
