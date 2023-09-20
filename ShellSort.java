@@ -12,7 +12,15 @@ public class ShellSort {
 
     //Todo: Implement the ShellSort()
     private static void shellSort() {
-
+        int h = 1;
+        while (h < ab.length) {
+            h = 3 * h + 1;
+        }
+        
+        while (h >= 1) {
+            insertionSort(h);
+            h = (h - 1) / 3;
+        }
     }
 
     /*
