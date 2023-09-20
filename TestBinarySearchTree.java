@@ -15,6 +15,7 @@ public class TestBinarySearchTree {
         tree.insert(5, 1.9);
         
         tree.print();
+        /*
         tree.delete(25);
         tree.print(); 
         
@@ -23,5 +24,6 @@ public class TestBinarySearchTree {
             System.out.print("Minimum: ");
             min.display();
         }
+        */
     }
 }

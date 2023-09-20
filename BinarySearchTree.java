@@ -5,7 +5,18 @@ public class BinarySearchTree {
     
     //Todo: Implement Searh for a Node given the key
     public Node find(int key) {      
-    
+        Node current = root;
+        
+        while (current != null) {
+            if (key == current.id) {
+                return current;
+            } else if (key < current.id) {
+                current = current.leftChild;
+            } else {
+                current = current.rightChild;
+            }
+        }
+        
         return null;
     }
 
@@ -16,7 +27,34 @@ public class BinarySearchTree {
 
     //Todo: Implement the Node insertion
     public void insert(Node newNode) {
+        if (root == null) {
+            root = newNode;
+            return;
+        }
         
+        Node current = root;  
+        while (current != null) {
+            if (newNode.id == current.id) {
+                //No duplicates allowed
+                throw new ArrayIndexOutOfBoundsException();
+            } 
+            
+            if (newNode.id < current.id) {
+                if (current.leftChild == null) {
+                    current.leftChild = newNode;
+                    break;
+                } else {
+                    current = current.leftChild;
+                }
+            } else {
+                if (current.rightChild == null) {
+                    current.rightChild = newNode;
+                    break;
+                } else {
+                    current = current.rightChild;                    
+                }
+            }            
+        }
     }
 
     //Todo: Implement - delete a Node given a key
