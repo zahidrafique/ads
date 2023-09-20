@@ -12,12 +12,39 @@ public class QuickSort {
     }
     
     private static void quickSort(int left, int right) {
-        if (right - left <= 0) { //base case for recursion
-            return;
+        //base case for recursion
+        //if (right - left <= 0) { //For right value as pivot
+        if (right - left < 3) {    //For median of three as pviot
+            manualSort(left, left+1, right);
         }  else {
-            int partitionIndex = partitionIt(left, right, ab[right]);
+            //int pivotValue = ab[right];   ////For right value as pivot
+            int pivotValue = getMedianOfThree(left, right);
+            
+            int partitionIndex = partitionIt(left, right, pivotValue);
             quickSort(left, partitionIndex - 1);
             quickSort(partitionIndex + 1, right);
+        }
+    }
+    
+    private static int getMedianOfThree(int left, int right) {
+        int middle = (left + right) / 2;
+        manualSort(left, middle, right);
+        
+        swap(middle, right);
+        return ab[right];
+    }
+    
+    private static void manualSort(int left, int middle, int right) {
+        if (ab[left] > ab[middle]) {
+            swap(left, middle);
+        }
+        
+        if (ab[left] > ab[right]) {
+            swap(left, right);
+        }
+        
+        if (ab[middle] > ab[right]) {
+            swap(middle, right);
         }
     }
     
