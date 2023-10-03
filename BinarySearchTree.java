@@ -59,10 +59,106 @@ public class BinarySearchTree {
 
     //Todo: Implement - delete a Node given a key
     public boolean delete(int key) {
+        //Search for the node to be deleted
+        Node current = root;
+        Node parent = null;
+        boolean isLeftChild = false;
         
-        return false;
+        while (current != null) {
+            if (key == current.id) {
+                break;
+            } 
+            
+            parent = current;
+            if (key < current.id) {     //curret is the Left child
+                isLeftChild = true;
+                current = current.leftChild;
+            } else {        //Right child
+                isLeftChild = false;
+                current = current.rightChild;
+            }
+        }   
+        
+        if (current == null) {  //current will be null if tree is empty or key does not exist
+            return false;
+        }
+        
+        if (current.leftChild == null && current.rightChild == null) {
+            //1. Deleting a leaf node
+            if (parent == null) {   // current == root
+                //1a. Deleting the last node in tree
+                root = null;
+            } else {
+                if (isLeftChild) {
+                    parent.leftChild = null;
+                } else {
+                    parent.rightChild = null;
+                }
+            }
+        } else if (current.rightChild == null) {
+            //2a. Delete the current with a left child
+            if (parent == null) {    // current == root
+                root = current.leftChild;
+            } else {
+                if (isLeftChild) {
+                    parent.leftChild = current.leftChild;
+                } else {
+                    parent.rightChild = current.leftChild;
+                }
+            } 
+        } else if (current.leftChild == null) {
+            //2a. Delete the current with a right child
+            if (parent == null) {   // current == root
+                root = current.rightChild;
+            } else {
+                if (isLeftChild) {
+                    parent.leftChild = current.rightChild;
+                } else {
+                    parent.rightChild = current.rightChild;
+                }
+            }
+        } else {
+            Node successor = findSuccessor(current);
+            
+            successor.leftChild = current.leftChild;
+            if (successor != current.rightChild) {
+                successor.rightChild = current.rightChild;
+            }
+            
+            if (parent == null) {   // current == root
+                root = successor;
+            } else {
+                if (isLeftChild) {
+                    parent.leftChild = successor;
+                } else {
+                    parent.rightChild = successor;
+                }
+            }    
+        }
+        
+        return true;
     }
       
+    private Node findSuccessor(Node delNode) {
+        Node successor = delNode.rightChild;
+        
+        if (successor.leftChild == null) {
+            return successor;
+        }
+ 
+        Node successorParent = delNode;
+        while(successor.leftChild != null) {
+            successorParent = successor;
+            successor = successor.leftChild;
+        }
+        
+        if (successor != delNode.rightChild) {
+            successorParent.leftChild = successor.rightChild;
+        }
+
+        return successor;
+    }
+    
     private String traversePreOrder(Node root) {
         if (root == null)
             return "";
