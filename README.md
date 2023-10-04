@@ -36,3 +36,10 @@
 * Implement [BinarySearchTree.java](BinarySearchTree.java)
 * Introduction to Balanced Trees
 * Introduction to Red-Black Trees
+
+## Lecture 6
+* Rotation in Red-Black Trees
+* Insertion/Deletion in Red-Black Trees
+* Implement [RedBlackTree.java](RedBlackTree.java)
+
+## Lecture 7
