@@ -85,13 +85,13 @@ public class RedBlackTree {
                 rotateLeft(g, gg);                
             }
             
-            if (x == p.rightChild && p == g.leftChild) {    //Inside grandchild - left child
+            if (x == p.rightChild && p == g.leftChild) {    //Inside grandchild - right child
                 g.isRed = !g.isRed;
                 x.isRed = !x.isRed;
                 rotateLeft(p, g);
                 rotateRight(g, gg);
             }
-            if (x == p.leftChild && p == g.rightChild) {    //Inside grandchild - right child
+            if (x == p.leftChild && p == g.rightChild) {    //Inside grandchild - left child
                 g.isRed = !g.isRed;
                 x.isRed = !x.isRed;
                 rotateRight(p, g);
