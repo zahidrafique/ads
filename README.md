@@ -1,5 +1,5 @@
 # Advanced Data Structure (CmpSci-282)
-## Computer Science - Fall 2023
+## Computer Science
 
 ## Lecture 1
 * Introduction
